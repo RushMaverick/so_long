@@ -6,13 +6,13 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:15:51 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/03 15:53:31 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/06 18:06:07 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strchr(const char *s, int c)
+int	strchrint(const char *s, int c)
 {
 	int	i;
 
@@ -104,7 +104,7 @@ char	*read_it(char *buf, int fd)
 		}
 		read_buf[read_bytes] = '\0';
 		buf = ft_strjoinfree(buf, read_buf);
-		if (ft_strchr(buf, '\n'))
+		if (strchrint(buf, '\n'))
 			break ;
 	}
 	free(read_buf);

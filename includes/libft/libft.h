@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:26:27 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/03 16:39:02 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/06 18:05:28 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include "../gnl/get_next_line.h"
+# include "../ft_printf/ft_printf.h"
 # define RAS_MAX 2147483647
 # define RAS_MIN -2147483648
 
