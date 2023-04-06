@@ -1,4 +1,4 @@
-NAME = whatever
+NAME = so_long
 INC_DIR = includes
 SRC_DIR = src
 MLX_DIR = mlx
