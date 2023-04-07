@@ -1,28 +1,38 @@
 NAME = so_long
-INC_DIR = includes
+
+LIB_DIR = libft
 SRC_DIR = src
-MLX_DIR = mlx
-VPATH = src:includes:mlx:gnl:ft_printf:libft
-CFLAGS = -Wall -Wextra -Werror
+VPATH = src
+
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
+OBJ_DIR = obj
+
+INCLUDES = -Ilibft/includes -Iincludes
+CFLAGS = -Wall -Wextra -Werror -MMD
 MLXFLAGS = -framework OpenGL -framework AppKit
 # Sources
 
-SRC_FILES = main.c
-SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+SRC = main.c
+
+DEP = $(OBJ:.o=.d)
 
 ####
 all: $(NAME)
 
-$(NAME): $(SRC)
-	make -C $(INC_DIR)
-	make -C $(MLX_DIR)
-	cc $(CFLAGS) $(SRC) -o $(NAME) -L. $(INC_DIR)/libft.a -L. -lmlx $(MLXFLAGS)
+$(NAME): $(OBJ)
+	make -C $(LIB_DIR)
+	cc $(CFLAGS) $(OBJ) -o $(NAME) -L$(LIB_DIR) -lft -lmlx $(MLXFLAGS)
+
+$(OBJ_DIR)/%.o: %.c
+	mkdir -p $(OBJ_DIR)
+	cc $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+-include $(DEP)
 
 clean:
-	rm -rf $(INC_DIR)/libft.a
-	rm -rf $(MLX_DIR)/libmlx.a
+	make clean -C $(LIB_DIR)
 
 fclean: clean
-	make fclean -C $(INC_DIR)
+	make fclean -C $(LIB_DIR)
 	rm -f $(NAME)
 re: fclean all

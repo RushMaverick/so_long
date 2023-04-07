@@ -6,13 +6,13 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 13:36:12 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/06 18:18:48 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/07 11:24:28 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include "../libft/libft.h"
+# include "libft.h"
 # include <stdarg.h>
 # include <unistd.h>
 

@@ -20,8 +20,7 @@ ft_putnbr_print.c		ft_putstr_print.c	ft_putusnbr.c	ft_putvoid.c		\
 get_next_line_utils.c	get_next_line.c
 
 CFLAGS = -Wall -Wextra -Werror -MMD
-
-INCFLAGS = -Ilibft -Ignl -Ift_printf
+INCFLAGS = -Iincludes
 
 DEP = $(OBJ:.o=.d)
 
@@ -32,7 +31,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o: %.c
 	mkdir -p $(OBJ_DIR)
-	cc $(CFLAGS) -c $< -o $@
+	cc $(CFLAGS) $(INCFLAGS) -c $< -o $@
 
 -include $(DEP)
 

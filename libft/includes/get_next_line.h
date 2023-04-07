@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 10:51:11 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/06 18:18:12 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/07 11:24:23 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include "../libft/libft.h"
+# include "libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
