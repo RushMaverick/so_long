@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/07 14:07:45 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/10 14:53:39 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_vars{
 	void	*mlx;
 	void	*win;
 	void	*img;
+	int		place;
 }				t_vars;
 
 typedef struct s_dims{
@@ -27,14 +28,18 @@ typedef struct s_dims{
 }				t_dims;
 
 enum e_keyevent{
-	ON_KEYDOWN = 2,
-	ON_KEYUP = 3,
-	ON_MOUSEDOWN = 4,
-	ON_MOUSEUP = 5,
-	ON_MOUSEMOVE = 6,
+	KEY_A = 0,
+	KEY_S = 1,
+	KEY_D = 2,
+	ON_KEYDOWN = 3,
+	ON_KEYUP = 4,
+	ON_MOUSEDOWN = 5,
+	ON_MOUSEUP = 6,
+	ON_MOUSEMOVE = 7,
 	ON_EXPOSE = 12,
+	KEY_W = 13,
 	ON_DESTROY = 17,
-	ESC = 53
+	ESC = 53,
 };
 
 int	key_handler(int keycode, t_vars *vars);
