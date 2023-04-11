@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/10 14:57:58 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/11 13:25:56 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 
 int	key_handler(int keycode, t_vars *vars)
 {	
+
 	if (keycode == KEY_W)
 	{
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 50, 0);
+		ft_printf("MOVE UP\n");
+	}	
+	if (keycode == KEY_A)
+	{
+		ft_printf("MOVE LEFT\n");
+	}	
+	if (keycode == KEY_S)
+	{
+		ft_printf("MOVE DOWN\n");
+	}	
+	if (keycode == KEY_D)
+	{
+		ft_printf("MOVE RIGHT\n");
 	}	
 	if (keycode == ESC)
 	{
@@ -28,13 +41,20 @@ int	key_handler(int keycode, t_vars *vars)
 
 int	main(void)
 {
-	t_vars	vars;
-	t_dims	dims;
+	t_vars		vars;
+	t_dims		dims;
 
 	dims.x = 32;
 	dims.y = 32;
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 640, 576, "KING");
+	if (!vars.mlx)
+		return (0);
+	vars.win = mlx_new_window(vars.mlx, WIN_WIDTH, WIN_HEIGHT, "KING");
+	if (!vars.win)
+	{
+		free(vars.win);
+		return (0);
+	}
 	vars.img = mlx_xpm_file_to_image(vars.mlx, "src/lad.xpm", &dims.x, &dims.y);
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img, 0, 0);
 	mlx_hook(vars.win, 2, 1L << 0, key_handler, &vars);

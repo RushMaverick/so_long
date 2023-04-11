@@ -19,7 +19,7 @@ ft_printf_utils1.c		ft_printf_utils2.c	ft_printf.c		ft_putchar_print.c	\
 ft_putnbr_print.c		ft_putstr_print.c	ft_putusnbr.c	ft_putvoid.c		\
 get_next_line_utils.c	get_next_line.c
 
-CFLAGS = -Wall -Wextra -Werror -MMD
+CFLAGS = -Wall -Wextra -Werror -MMD -g
 INCFLAGS = -Iincludes
 
 DEP = $(OBJ:.o=.d)

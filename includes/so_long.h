@@ -6,12 +6,16 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/10 14:53:39 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/11 13:23:34 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# define MOVE_X 0
+# define MOVE_Y 0
+# define WIN_WIDTH 640
+# define WIN_HEIGHT 576
 # include "mlx.h"
 # include "libft.h"
 
