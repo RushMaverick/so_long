@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/11 13:23:34 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/14 14:01:18 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ typedef struct s_vars{
 	int		place;
 }				t_vars;
 
-typedef struct s_dims{
-	int		x;
-	int		y;
-}				t_dims;
+typedef struct s_game{
+	int		resx;
+	int		resy;
+	int		dimsy;
+	int		dimsx;
+}				t_game;
 
 enum e_keyevent{
 	KEY_A = 0,

@@ -2,13 +2,13 @@ NAME = so_long
 
 LIB_DIR = libft
 SRC_DIR = src
-VPATH = src
+VPATH = src:libft:includes
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 OBJ_DIR = obj
 
 INCLUDES = -Ilibft/includes -Iincludes
-CFLAGS = -Wall -Wextra -Werror -MMD
+CFLAGS = -Wall -Wextra -Werror -MMD -g
 MLXFLAGS = -framework OpenGL -framework AppKit
 # Sources
 
@@ -34,5 +34,6 @@ clean:
 
 fclean: clean
 	make fclean -C $(LIB_DIR)
+	rm -rf $(OBJ_DIR)
 	rm -f $(NAME)
 re: fclean all
