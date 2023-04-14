@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:52:09 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/03 15:53:59 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/14 15:56:56 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,20 @@ void	ft_bzero(void *str, size_t n)
 		((char *)str)[i++] = '\0';
 }
 
-void	*ft_calloc(size_t count, size_t size)
+// void	*ft_calloc(size_t count, size_t size)
 
-{
-	void	*ptr;
-	size_t	mult;
+// {
+// 	void	*ptr;
+// 	size_t	mult;
 
-	if (count == 0 || size == 0)
-		return (NULL);
-	mult = count * size;
-	if (mult / count != size)
-		return (NULL);
-	ptr = malloc(mult);
-	if (!ptr)
-		return (0);
-	ft_bzero(ptr, mult);
-	return (ptr);
-}
+// 	if (count == 0 || size == 0)
+// 		return (NULL);
+// 	mult = count * size;
+// 	if (mult / count != size)
+// 		return (NULL);
+// 	ptr = malloc(mult);
+// 	if (!ptr)
+// 		return (0);
+// 	ft_bzero(ptr, mult);
+// 	return (ptr);
+// }

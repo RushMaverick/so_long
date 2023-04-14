@@ -6,11 +6,38 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/14 14:16:11 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/14 16:07:16 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	init(t_game *game)
+{
+	game->resx = 32;
+	game->resy = 32;
+}
+
+void	map_checker(char *argv)
+{
+	int		fd;
+	char	*str;
+
+	fd = open(&argv[1], O_RDONLY);
+	ft_printf("%d\n", fd);
+	str = get_next_line(fd);
+	ft_printf("%s\n", str);
+	free(str);
+}
+
+int	image_handler(t_vars *vars, t_game *game)
+{
+	vars->img = mlx_xpm_file_to_image(vars->mlx, "src/lad.xpm", &game->resx,
+			&game->resy);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+	mlx_hook(vars->win, 2, 1L << 0, &key_handler, vars);
+	return (0);
+}
 
 int	key_handler(int keycode, t_vars *vars)
 {
@@ -38,37 +65,18 @@ int	key_handler(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	image_handler(t_vars *vars, t_game *game)
-{
-	vars->img = mlx_xpm_file_to_image \
-		(vars->mlx, "src/lad.xpm", &game->resx, &game->resy);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
-	mlx_hook(vars->win, 2, 1L << 0, &key_handler, vars);
-	return (0);
-}
-
-void	init(t_game *game)
-{
-	game->resx = 32;
-	game->resy = 32;
-}
-
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_vars	vars;
 	t_game	game;
 
+	if (argc != 2)
+	{
+		ft_printf("Nice try bucko, try again.\n");
+		return (0);
+	}
 	init(&game);
-	// int			fd;
-	// char		**map;
-	// if (argc != 2)
-	// {
-	// 	ft_printf("Nice try bucko, try again.\n");
-	// 	return (0);
-	// }
-	// map = ft_calloc(1, 1);
-	// fd = open(argv[1], O_RDONLY);
-	//map_reader(fd);
+	map_checker(argv[1]);
 	vars.mlx = mlx_init();
 	if (!vars.mlx)
 		return (0);
