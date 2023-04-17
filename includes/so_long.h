@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/17 14:05:25 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/17 21:41:34 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_game{
 	int		dimsx;
 }				t_game;
 
-enum e_keyevent{
+typedef enum e_keyevent{
 	KEY_A = 0,
 	KEY_S = 1,
 	KEY_D = 2,
@@ -49,8 +49,43 @@ enum e_keyevent{
 	ON_EXPOSE = 12,
 	KEY_W = 13,
 	ON_DESTROY = 17,
-	ESC = 53,
-};
+	ESC = 53
+}				t_keyevent;
+
+typedef enum e_game_obj
+{
+	EMPTY,
+	PLAYER,
+	WALL,
+	EXIT,
+	COLLECTIBLE,
+}	t_game_obj;
+
+
+// srtbfd g data
+
+// t_game_obj	**map;
+
+// dfgfg
+
+
+// parse_map(fd)
+
+
+// data->map = malloc(sizeof(t_game_obj *) * nb of lines)
+
+
+// read a line 0
+// 	data->map[0] = malloc(sizeof(t_game_obj) * length of the line)
+// 	for i, ch in line:
+// 		if (ch == '0')
+// 			data->map[line_nb][i] = EMPTY;
+// 		else if (ch == 'p')
+// 			data->map[line_nb][i] = PLAer;
+// 		if (ch == '0')
+// 			data->map[line_nb][i] = EMPTY;
+// 		if (ch == '0')
+// 			data->map[line_nb][i] = EMPTY;
 
 int		key_handler(int keycode, t_vars *vars);
 int		image_handler(t_vars *vars, t_game *game);

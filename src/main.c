@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/17 17:17:41 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/17 18:36:11 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,7 @@ void	init(t_game *game, t_vars *vars)
 void	map_array(char *str)
 {
 	char	**map;
-	int		x;
-	int		y;
 
-	x = 0;
-	y = 0;
-	map = malloc((4 * 2) * sizeof(char *) + 1);
-	map[4 * 2] = NULL;
-	while (map[x] != NULL)
-	{
-		map[x] = ft_strdup(str);
-	}
-	ft_printf("%s\n", **map);
 }
 
 void	map_checker(char *line)
@@ -56,7 +45,7 @@ void	map_checker(char *line)
 	{
 		i = 0;
 		str = get_next_line(fd);
-		// map_array(str);
+		map_array(str);
 		ft_printf("%s", str);
 		free(str);
 	}
@@ -75,6 +64,7 @@ int	image_handler(t_vars *vars, t_game *game)
 
 int	key_handler(int keycode, t_vars *vars)
 {
+	sizeof(t_game_obj) ;
 	if (keycode == KEY_W)
 	{
 		ft_printf("MOVE UP\n");
