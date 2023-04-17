@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 10:51:11 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/17 09:24:54 by rrask            ###   ########.fr       */
+/*   Created: 2023/04/17 09:32:04 by rrask             #+#    #+#             */
+/*   Updated: 2023/04/17 09:37:32 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "so_long.h"
 
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
-# include "libft.h"
+static void func(char *line)
+{
+	int		fd;
+	char	*str;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
+	fd = open(line, O_RDONLY);
+	str = get_next_line(fd);
+	ft_printf("%s\n", str);
+	free(str);
+}
 
-char	*get_next_line(int fd);
-char	*read_it(char *buf, int fd);
-char	*update_stash(char *read_line);
-char	*get_it(char *read_line);
+int	main(int argc, char **argv)
+{
 
-#endif
+	if (argc != 2)
+	{
+		ft_printf("ADD THE ARGUMENT CUNT");
+		return (0);
+	}
+	func(argv[1]);
+	return (0);
+}

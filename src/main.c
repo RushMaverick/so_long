@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/14 16:07:16 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/17 11:22:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,20 @@ void	init(t_game *game)
 	game->resy = 32;
 }
 
-void	map_checker(char *argv)
+void	map_checker(char *line)
 {
 	int		fd;
 	char	*str;
 
-	fd = open(&argv[1], O_RDONLY);
-	ft_printf("%d\n", fd);
+	fd = open(line, O_RDONLY);
 	str = get_next_line(fd);
-	ft_printf("%s\n", str);
-	free(str);
+	ft_printf(str);
+	while (str != NULL)
+	{
+		str = get_next_line(fd);
+		ft_printf("%s", str);
+		free(str);
+	}
 }
 
 int	image_handler(t_vars *vars, t_game *game)

@@ -6,25 +6,11 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:15:51 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/06 18:06:07 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/17 09:30:53 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int	strchrint(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (1);
-	while (s[i] != (unsigned char)c && s[i] != '\0')
-		i++;
-	if (s[i] != (unsigned char)c)
-		return (0);
-	return (1);
-}
 
 char	*update_stash(char *buf)
 {
@@ -104,7 +90,7 @@ char	*read_it(char *buf, int fd)
 		}
 		read_buf[read_bytes] = '\0';
 		buf = ft_strjoinfree(buf, read_buf);
-		if (strchrint(buf, '\n'))
+		if (ft_strchrint(buf, '\n'))
 			break ;
 	}
 	free(read_buf);
