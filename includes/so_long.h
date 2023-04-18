@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/17 21:41:34 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/18 15:51:53 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ typedef struct s_vars{
 typedef struct s_game{
 	int		resx;
 	int		resy;
-	int		dimsy;
-	int		dimsx;
+	int		width;
+	int		col_count;
+	char	**map;
+	char	*map_row;
 }				t_game;
 
 typedef enum e_keyevent{
@@ -59,36 +61,13 @@ typedef enum e_game_obj
 	WALL,
 	EXIT,
 	COLLECTIBLE,
-}	t_game_obj;
-
-
-// srtbfd g data
-
-// t_game_obj	**map;
-
-// dfgfg
-
-
-// parse_map(fd)
-
-
-// data->map = malloc(sizeof(t_game_obj *) * nb of lines)
-
-
-// read a line 0
-// 	data->map[0] = malloc(sizeof(t_game_obj) * length of the line)
-// 	for i, ch in line:
-// 		if (ch == '0')
-// 			data->map[line_nb][i] = EMPTY;
-// 		else if (ch == 'p')
-// 			data->map[line_nb][i] = PLAer;
-// 		if (ch == '0')
-// 			data->map[line_nb][i] = EMPTY;
-// 		if (ch == '0')
-// 			data->map[line_nb][i] = EMPTY;
+}				t_game_obj;
 
 int		key_handler(int keycode, t_vars *vars);
 int		image_handler(t_vars *vars, t_game *game);
 void	init(t_game *game, t_vars *vars);
+void	map_checker(char *line);
+void	get_columns(t_game *game, int fd);
+void	tile_number(int fd, char *line, t_game *game);
 
 #endif

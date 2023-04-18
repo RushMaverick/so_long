@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/17 18:36:11 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/18 15:50:10 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,37 +26,10 @@ void	init(t_game *game, t_vars *vars)
 	}
 }
 
-void	map_array(char *str)
-{
-	char	**map;
-
-}
-
-void	map_checker(char *line)
-{
-	int		fd;
-	int		i;
-	char	*str;
-
-	i = 1;
-	str = NULL;
-	fd = open(line, O_RDONLY);
-	while (str != NULL || i == 1)
-	{
-		i = 0;
-		str = get_next_line(fd);
-		map_array(str);
-		ft_printf("%s", str);
-		free(str);
-	}
-	free(str);
-	close(fd);
-}
-
 int	image_handler(t_vars *vars, t_game *game)
 {
-	vars->img = mlx_xpm_file_to_image(vars->mlx, FRONT,
-			&game->resx, &game->resy);
+	vars->img = mlx_xpm_file_to_image(vars->mlx, FRONT, &game->resx,
+			&game->resy);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	mlx_hook(vars->win, 2, 1L << 0, &key_handler, vars);
 	return (0);
@@ -64,7 +37,6 @@ int	image_handler(t_vars *vars, t_game *game)
 
 int	key_handler(int keycode, t_vars *vars)
 {
-	sizeof(t_game_obj) ;
 	if (keycode == KEY_W)
 	{
 		ft_printf("MOVE UP\n");

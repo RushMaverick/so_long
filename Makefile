@@ -12,7 +12,7 @@ CFLAGS = -Wall -Wextra -Werror -MMD -g
 MLXFLAGS = -framework OpenGL -framework AppKit
 # Sources
 
-SRC = main.c
+SRC = main.c map_utils.c
 
 DEP = $(OBJ:.o=.d)
 
