@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/18 15:50:10 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/19 14:37:58 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ void	init(t_game *game, t_vars *vars)
 	game->resy = 32;
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
-		;
+	{
+		ft_printf("Failed to init, innit?");
+		exit(1);
+	}
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "VIdy a geim");
 	if (!vars->win)
 	{
-		free(vars->win);
+		ft_printf("Windows failed, therefore you suck.");
+		exit(1);
 	}
 }
 

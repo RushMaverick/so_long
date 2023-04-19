@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/18 15:51:53 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/19 15:17:34 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ typedef struct s_vars{
 typedef struct s_game{
 	int		resx;
 	int		resy;
-	int		width;
-	int		col_count;
-	char	**map;
-	char	*map_row;
 }				t_game;
+
+typedef struct s_map{
+	int		width;
+	int		counter;
+	char	**map;
+}				t_map;
 
 typedef enum e_keyevent{
 	KEY_A = 0,
