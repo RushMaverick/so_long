@@ -6,45 +6,11 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/19 15:29:03 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/20 13:42:47 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// void	allocate_x(int fd, char *line, t_map *map)
-// {
-// 	fd = open(line, O_RDONLY);
-// 	map->map_x = get_next_line(fd);
-// 	map->width = ft_strlen(map->map_x) - 1;
-// 	free(map->map_x);
-// 	close(fd);
-// }
-
-// void	allocate_y(t_map *map, int fd)
-// {
-// 	int		i;
-// 	int		l;
-// 	char	*str;
-
-// 	map->width = 0;
-// 	map->col_count = -1;
-// 	str = "";
-// 	i = 1;
-// 	l = 0;
-// 	while (str != NULL || i == 1)
-// 	{
-// 		i = 0;
-// 		str = get_next_line(fd);
-// 		map->map[l] = *(char *)malloc(sizeof(char) * ft_strlen(str));
-// 		ft_printf("I am here");
-// 		str2[l] = *ft_strdup(str);
-// 		ft_printf("%s\n", str2);
-// 		l++;
-// 		free(str);
-// 	}
-// 	close(fd);
-// }
 
 void	map_reader(int fd, t_map *map)
 {
@@ -62,6 +28,30 @@ void	map_reader(int fd, t_map *map)
 		str = get_next_line(fd);
 	}
 	map->map = ft_split(map_array, '\n');
+	map_validator(map);
+}
+
+void	map_validator(t_map *map)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = 0;
+	j = 0;
+	len = 0;
+	while (map->map[i] != '\0')
+	{
+		ft_printf("The *: %s\n", map->map[i]);
+		j = 0;
+		while (map->map[i][j] != '\0')
+		{
+			len = ft_strlen(&map->map[i][j]);
+			ft_printf("The length: %d\n", len);
+			j++;
+		}
+		i++;
+	}
 }
 
 void	map_checker(char *line)

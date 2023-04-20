@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/19 15:17:34 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/20 13:40:49 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		key_handler(int keycode, t_vars *vars);
 int		image_handler(t_vars *vars, t_game *game);
 void	init(t_game *game, t_vars *vars);
 void	map_checker(char *line);
-void	get_columns(t_game *game, int fd);
-void	tile_number(int fd, char *line, t_game *game);
+void	map_reader(int fd, t_map *map);
+void	map_validator(t_map *map);
 
 #endif
