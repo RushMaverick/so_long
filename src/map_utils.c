@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/20 13:42:47 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/20 15:25:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,17 @@ void	map_validator(t_map *map)
 {
 	int	i;
 	int	j;
-	int	len;
 
 	i = 0;
 	j = 0;
-	len = 0;
 	while (map->map[i] != '\0')
 	{
-		ft_printf("The *: %s\n", map->map[i]);
 		j = 0;
+		// ft_printf("%s", map->map[i]);
 		while (map->map[i][j] != '\0')
 		{
-			len = ft_strlen(&map->map[i][j]);
-			ft_printf("The length: %d\n", len);
-			j++;
+			if (map->map[i][j] != '\n')
+				j++;
 		}
 		i++;
 	}
