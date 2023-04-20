@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/20 13:40:49 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/20 17:05:35 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 # include "mlx.h"
 # include "libft.h"
 
+typedef enum e_game_obj
+{
+	EMPTY,
+	PLAYER,
+	WALL,
+	EXIT,
+	COLLECTIBLE,
+}				t_game_obj;
+
 typedef struct s_vars{
 	void	*mlx;
 	void	*win;
@@ -37,8 +46,8 @@ typedef struct s_game{
 
 typedef struct s_map{
 	int		width;
-	int		counter;
-	char	**map;
+	int		height;
+	t_game_obj	**map;
 }				t_map;
 
 typedef enum e_keyevent{
@@ -56,14 +65,6 @@ typedef enum e_keyevent{
 	ESC = 53
 }				t_keyevent;
 
-typedef enum e_game_obj
-{
-	EMPTY,
-	PLAYER,
-	WALL,
-	EXIT,
-	COLLECTIBLE,
-}				t_game_obj;
 
 int		key_handler(int keycode, t_vars *vars);
 int		image_handler(t_vars *vars, t_game *game);

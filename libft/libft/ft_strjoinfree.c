@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:21:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/17 09:30:23 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/20 17:09:21 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ char	*ft_strjoinfree(char const *buf, char const *read_buf)
 		return (NULL);
 	istheres(joined, buf, read_buf);
 	free((void *)buf);
-	return (&*joined);
+	return (joined);
 }
