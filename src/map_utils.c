@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/24 12:33:59 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/24 17:32:24 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	map_reader(int fd, t_map *map)
 {
 	char	*str;
 	char	*map_array;
-	char	**whole_map;
 
 	map->height = 0;
 	map_array = malloc(1);
@@ -29,54 +28,78 @@ void	map_reader(int fd, t_map *map)
 		free(str);
 		map->height++;
 	}
-	whole_map = ft_split(map_array, '\n');
+	map->map = ft_split(map_array, '\n');
 	free(map_array);
 	free(str);
-	map_validator(map, whole_map);
 }
 
-void	map_validator(t_map *map, char **whole_map)
+/*Checks the validity of the map. Map_rect_check checks if
+the map is rectangular or not. Map_placement
+places the correct sprites on the correct characters.*/
+void	map_check(t_map *map, t_vars *vars)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 	int	comp_width;
 
-	i = 0;
-	j = 0;
-	comp_width = ft_strlen(*whole_map);
-	while (whole_map[i] != '\0')
+	x = 0;
+	y = 0;
+	comp_width = ft_strlen(map->map[x]);
+	while (map->map[x] != '\0')
 	{
-		j = 0;
-		map->width = ft_strlen(whole_map[i]);
-		if (map->width != comp_width)
+		y = 0;
+		// map_rect_check(map->map[i], comp_width);
+		while (map->map[x][y] != '\0')
 		{
-			free(whole_map);
-			ft_printf("%s\n", "That's wrong");
-			exit (1);
+			map_placement(map, x, y, vars);
+			y++;
 		}
-		while (whole_map[i][j] != '\0')
-		{
-			map_placement(whole_map[i][j]);
-			if (whole_map[i][j] != '\n')
-				j++;
-		}
-		i++;
+		x++;
 		ft_printf("\n");
 	}
 }
 
-void	map_placement(char c)
+void	map_placement(t_map *map, int x, int y, t_vars *vars)
 {
-	ft_printf("%c", c);
+	int	line_length;
+	int	offsetx;
+	int	offsety;
+
+	vars->bpp = 32;
+	offsety = x * 32;
+	offsetx = y * 32;
+	line_length = ft_strlen(map->map[x]);
+	if (map->map[x][y] == '1')
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, offsetx,
+			offsety);
+	}
+	if (map->map[x][y] == '0')
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->empty, offsetx,
+			offsety);
+	}
+	if (map->map[x][y] == 'P')
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->empty, offsetx,
+			offsety);
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->player, offsetx,
+			offsety);
+	}
 }
 
-void	map_checker(char *file_name)
+/*Check the length of the following grid_line by
+comparing to the comp_width set at the start.*/
+// void	map_rect_check(char *grid_line, int comp_width)
+// {
+// }
+
+void	map_checker(char *file_name, t_vars *vars)
 {
 	int		fd;
 	t_map	map;
 
 	fd = open(file_name, O_RDONLY);
 	map_reader(fd, &map);
-	//free_map
-	//ft_printf("%d tiles, with a number of %d columns.\n", map.width, map.col_count);
+	map_check(&map, vars);
 }

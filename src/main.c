@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/24 12:12:57 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/24 17:29:53 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,25 @@ void	init(t_game *game, t_vars *vars)
 {
 	game->resx = 32;
 	game->resy = 32;
+
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 	{
 		ft_printf("Failed to init, innit?");
 		exit(1);
 	}
+	vars->player = mlx_xpm_file_to_image(vars->mlx, FRONT, &game->resx,
+			&game->resy);
+	vars->empty = mlx_xpm_file_to_image(vars->mlx, EMPTY, &game->resx,
+			&game->resy);
+	vars->wall = mlx_xpm_file_to_image(vars->mlx, WALL, &game->resx,
+			&game->resy);
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "VIdy a geim");
 	if (!vars->win)
 	{
 		ft_printf("Windows failed, therefore you suck.");
 		exit(1);
 	}
-}
-
-int	image_handler(t_vars *vars, t_game *game)
-{
-	vars->img = mlx_xpm_file_to_image(vars->mlx, FRONT, &game->resx,
-			&game->resy);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
-	mlx_hook(vars->win, 2, 1L << 0, &key_handler, vars);
-	return (0);
 }
 
 int	key_handler(int keycode, t_vars *vars)
@@ -76,8 +74,8 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	init(&game, &vars);
-	map_checker(argv[1]);
-	image_handler(&vars, &game);
+	map_checker(argv[1], &vars);
+	mlx_hook(vars.win, 2, 1L << 0, &key_handler, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }

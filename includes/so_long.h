@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/24 12:30:48 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/24 17:24:13 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ typedef struct s_vars
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
+	void		*player;
+	void		*empty;
+	void		*wall;
+	int			bpp;
 	int			place;
 }				t_vars;
 
@@ -73,12 +76,12 @@ typedef enum e_keyevent
 }				t_keyevent;
 
 int				key_handler(int keycode, t_vars *vars);
-int				image_handler(t_vars *vars, t_game *game);
+int				image_handler(t_vars *vars);
 void			init(t_game *game, t_vars *vars);
-void			map_checker(char *line);
+void			map_checker(char *line, t_vars *vars);
 void			map_reader(int fd, t_map *map);
-void			map_validator(t_map *map, char **whole_map);
-void			map_placement(char c);
-void			is_map_rectangular(t_map *map);
+void			map_check(t_map *map, t_vars *vars);
+void			map_placement(t_map *map, int x, int y, t_vars *vars);
+// void			map_rect_check(char *grid_line, int comp_width);
 
 #endif
