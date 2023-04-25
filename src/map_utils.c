@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/24 17:32:24 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/25 11:31:50 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,26 @@ void	map_placement(t_map *map, int x, int y, t_vars *vars)
 	offsetx = y * 32;
 	line_length = ft_strlen(map->map[x]);
 	if (map->map[x][y] == '1')
-	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, offsetx,
 			offsety);
-	}
 	if (map->map[x][y] == '0')
-	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->empty, offsetx,
 			offsety);
-	}
+	if (map->map[x][y] == 'E')
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->exit, offsetx,
+			offsety);
 	if (map->map[x][y] == 'P')
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->empty, offsetx,
 			offsety);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->player, offsetx,
+			offsety);
+	}
+	if (map->map[x][y] == 'C')
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->empty, offsetx,
+			offsety);
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->key, offsetx,
 			offsety);
 	}
 }

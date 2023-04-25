@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/24 17:29:53 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/25 11:31:42 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void	init(t_game *game, t_vars *vars)
 			&game->resy);
 	vars->wall = mlx_xpm_file_to_image(vars->mlx, WALL, &game->resx,
 			&game->resy);
+	vars->exit = mlx_xpm_file_to_image(vars->mlx, EXIT, &game->resx,
+			&game->resy);
+	vars->key = mlx_xpm_file_to_image(vars->mlx, KEY, &game->resx,
+			&game->resy);
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "VIdy a geim");
 	if (!vars->win)
 	{
@@ -40,21 +44,13 @@ void	init(t_game *game, t_vars *vars)
 int	key_handler(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_W)
-	{
 		ft_printf("MOVE UP\n");
-	}
 	if (keycode == KEY_A)
-	{
 		ft_printf("MOVE LEFT\n");
-	}
 	if (keycode == KEY_S)
-	{
 		ft_printf("MOVE DOWN\n");
-	}
 	if (keycode == KEY_D)
-	{
 		ft_printf("MOVE RIGHT\n");
-	}
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);

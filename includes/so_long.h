@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/24 17:24:13 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/25 11:47:09 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define WALL "src/sprites/wall.xpm"
 # define EXIT "src/sprites/exit.xpm"
 # define EMPTY "src/sprites/empty.xpm"
+# define KEY "src/sprites/key.xpm"
 # include "libft.h"
 # include "mlx.h"
 
@@ -41,7 +42,9 @@ typedef struct s_vars
 	void		*win;
 	void		*player;
 	void		*empty;
+	void		*exit;
 	void		*wall;
+	void		*key;
 	int			bpp;
 	int			place;
 }				t_vars;
