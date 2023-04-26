@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/25 11:31:42 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/26 12:05:58 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	init(t_game *game, t_vars *vars)
 {
 	game->resx = 32;
 	game->resy = 32;
-
 	vars->mlx = mlx_init();
 	if (!vars->mlx)
 	{
@@ -53,6 +52,9 @@ int	key_handler(int keycode, t_vars *vars)
 		ft_printf("MOVE RIGHT\n");
 	if (keycode == ESC)
 	{
+		// free_map(map);
+		// ft_printf("Amount of x: %d\n", map->map[map->x]);
+		// ft_printf("Amount of y: %d\n", map->map[map->y]);
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
 	}
