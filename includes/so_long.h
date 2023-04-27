@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/27 11:08:36 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/27 15:37:45 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@
 // 	COLLECTIBLE,
 // }				t_game_obj;
 
+typedef struct s_map
+{
+	int			x;
+	int			y;
+	char		**map;
+}				t_map;
+
 typedef struct s_vars
 {
 	void		*mlx;
@@ -45,6 +52,7 @@ typedef struct s_vars
 	void		*exit;
 	void		*wall;
 	void		*key;
+	t_map		*map;
 }				t_vars;
 
 typedef struct s_game
@@ -52,13 +60,6 @@ typedef struct s_game
 	int			resx;
 	int			resy;
 }				t_game;
-
-typedef struct s_map
-{
-	int			x;
-	int			y;
-	char		**map;
-}				t_map;
 
 typedef enum e_keyevent
 {
@@ -76,7 +77,7 @@ typedef enum e_keyevent
 	ESC = 53
 }				t_keyevent;
 
-int				key_handler(int keycode);
+int				key_handler(int keycode, t_vars *vars);
 void			init(t_game *game, t_vars *vars);
 void			map_checker(char *line, t_vars *vars);
 void			map_reader(int fd, t_map *map);

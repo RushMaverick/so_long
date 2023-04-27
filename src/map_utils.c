@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/27 11:06:53 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/27 15:43:20 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	free_map(t_map *map)
 {
-	while (map->map[map->y])
+	while (map->y >= 0)
 	{
+		ft_printf("%d %s\n", map->y, map->map[map->y]);
 		free(map->map[map->y]);
 		map->y--;
 	}
@@ -26,9 +27,12 @@ void	map_reader(int fd, t_map *map)
 {
 	char	*str;
 	char	*map_array;
+	int		count;
 
-	map->y = 0;
+	count = 0;
 	map_array = malloc(1);
+	if (!map_array)
+		exit (0);
 	while (1) //LEAK IN HERE SOMEWHERE
 	{
 		str = get_next_line(fd);
@@ -36,11 +40,10 @@ void	map_reader(int fd, t_map *map)
 			break ;
 		map_array = ft_strjoinfree(map_array, str);
 		free(str);
-		map->y++;
+		count++;
 	}
 	map->map = ft_split(map_array, '\n');
 	free(map_array);
-	free(str);
 }
 
 /*Checks the validity of the map. Map_rect_check checks if
@@ -82,9 +85,13 @@ void	map_rect_check(char *grid_line, int comp_width)
 void	map_checker(char *file_name, t_vars *vars)
 {
 	int		fd;
-	t_map	map;
+	t_map	*map;
 
+	map = malloc(sizeof(t_map));
+	if (!map)
+		exit (0);
 	fd = open(file_name, O_RDONLY);
-	map_reader(fd, &map);
-	map_check(&map, vars);
+	map_reader(fd, map);
+	vars->map = map;
+	map_check(map, vars);
 }

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/27 10:53:54 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/27 15:34:00 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init(t_game *game, t_vars *vars)
 	}
 }
 
-int	key_handler(int keycode)
+int	key_handler(int keycode, t_vars *vars)
 {
 	if (keycode == KEY_W)
 		ft_printf("MOVE UP\n");
@@ -51,9 +51,10 @@ int	key_handler(int keycode)
 	if (keycode == KEY_D)
 		ft_printf("MOVE RIGHT\n");
 	if (keycode == ESC)
-		// free_map(map);
-		ft_printf("Nice try bucko, try again.\n");
+	{
+		free_map(vars->map);
 		exit(0);
+	}
 	return (0);
 }
 
