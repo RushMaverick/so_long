@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/27 15:34:00 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/27 17:04:33 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init(t_game *game, t_vars *vars)
 	vars->win = mlx_new_window(vars->mlx, WIN_WIDTH, WIN_HEIGHT, "VIdy a geim");
 	if (!vars->win)
 	{
-		ft_printf("Windows failed, therefore you suck.");
+		ft_printf("Window did not open, therefore you suck.");
 		exit(1);
 	}
 }

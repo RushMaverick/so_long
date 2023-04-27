@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/27 15:43:20 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/27 17:15:49 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	free_map(t_map *map)
 {
 	while (map->y >= 0)
 	{
-		ft_printf("%d %s\n", map->y, map->map[map->y]);
 		free(map->map[map->y]);
 		map->y--;
 	}
@@ -73,11 +72,28 @@ void	map_check(t_map *map, t_vars *vars)
 comparing to the comp_width set at the start.*/
 void	map_rect_check(char *grid_line, int comp_width)
 {
+	int	i;
 	int	current_width;
 
 	current_width = ft_strlen(grid_line);
+	i = 0;
+	if (grid_line[i] != '1')
+	{
+		ft_printf("Map is not closed. Invalid map.\n");
+		exit(0);
+	}
+	while (grid_line[i])
+	{
+		i++;
+	}
+	if ((grid_line[i - 1]) != '1')
+	{
+		ft_printf("Map is not closed. Invalid map.\n");
+		exit(0);
+	}
 	if (current_width != comp_width)
 	{
+		ft_printf("Map is not rectangular. Invalid map.\n");
 		exit(0);
 	}
 }
