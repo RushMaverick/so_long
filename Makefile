@@ -20,20 +20,20 @@ DEP = $(OBJ:.o=.d)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -C $(LIB_DIR)
-	cc $(CFLAGS) $(OBJ) -o $(NAME) -L$(LIB_DIR) -lft -lmlx $(MLXFLAGS)
+	@make -C $(LIB_DIR)
+	@cc $(CFLAGS) $(OBJ) -o $(NAME) -L$(LIB_DIR) -lft -lmlx $(MLXFLAGS)
 
 $(OBJ_DIR)/%.o: %.c
-	mkdir -p $(OBJ_DIR)
-	cc $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@mkdir -p $(OBJ_DIR)
+	@cc $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 -include $(DEP)
 
 clean:
-	make clean -C $(LIB_DIR)
+	@make clean -C $(LIB_DIR)
 
 fclean: clean
-	make fclean -C $(LIB_DIR)
-	rm -rf $(OBJ_DIR)
-	rm -f $(NAME)
+	@make fclean -C $(LIB_DIR)
+	@rm -rf $(OBJ_DIR)
+	@rm -f $(NAME)
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/28 10:35:27 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/28 15:54:18 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	map_reader(int fd, t_map *map)
 	int		count;
 
 	count = 0;
-	map_array = malloc(1);
+	map_array = ft_calloc(1, sizeof(char));
 	if (!map_array)
-		exit (0);
-	while (1) //LEAK IN HERE SOMEWHERE
+		invalid_error("ft_calloc has failed. Try again?");
+	while (1)
 	{
 		str = get_next_line(fd);
 		if (str == NULL)
@@ -58,14 +58,16 @@ void	map_check(t_map *map, t_vars *vars)
 	while (map->map[map->y] != '\0')
 	{
 		map->x = 0;
-		map_rect_check(map->map[map->y], comp_width);
+		map_rect_check(map->map[map->y], comp_width); //I am not checking for if the top and bottom line are just 1s
 		while (map->map[map->y][map->x] != '\0')
 		{
 			map_placement(map, map->y, map->x, vars);
 			map->x++;
 		}
 		map->y++;
-	}
+	}	
+	// ft_printf("%s\n", map->map[0]);
+	// ft_printf("%s\n", map->map[map->y - 1]); Loop through comp string or some
 }
 
 void	map_checker(char *file_name, t_vars *vars)

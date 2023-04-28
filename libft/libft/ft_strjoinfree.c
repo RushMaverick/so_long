@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:21:41 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/24 10:34:12 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/28 11:33:23 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,19 @@ static void	istheres(char *joined, char const *s1, char const *s2)
 char	*ft_strjoinfree(char const *buf, char const *read_buf)
 {
 	char	*joined;
+	int		buf_len;
+	int		read_buf_len;
 
-	joined = ft_calloc(ft_strlen(buf) + ft_strlen(read_buf) + 1, sizeof(char));
+	if (!buf)
+		buf_len = 0;
+	else
+		buf_len = ft_strlen(buf);
+	read_buf_len = ft_strlen(read_buf);
+	joined = ft_calloc(buf_len + read_buf_len + 1, sizeof(char));
 	if (!joined)
 		return (NULL);
 	istheres(joined, buf, read_buf);
-	free((void *)buf);
+	if (buf)
+		free((void *)buf);
 	return (joined);
 }

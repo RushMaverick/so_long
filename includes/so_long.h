@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/27 17:30:09 by rrask            ###   ########.fr       */
+/*   Updated: 2023/04/28 11:30:40 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ typedef enum e_keyevent
 
 int				key_handler(int keycode, t_vars *vars);
 void			init(t_game *game, t_vars *vars);
-void			invalid_error(void);
+void			invalid_error(char *err_msg);
 void			map_checker(char *line, t_vars *vars);
 void			map_reader(int fd, t_map *map);
 void			map_check(t_map *map, t_vars *vars);
 void			map_placement(t_map *map, int x, int y, t_vars *vars);
-void			map_rect_check(char *grid_line, int comp_width);
+void			map_rect_check(const char *grid_line, int comp_width);
 void			free_map(t_map	*map);
 
 #endif 
