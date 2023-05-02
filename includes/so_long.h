@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/28 11:30:40 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/02 13:38:01 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,7 @@ void			map_check(t_map *map, t_vars *vars);
 void			map_placement(t_map *map, int x, int y, t_vars *vars);
 void			map_rect_check(const char *grid_line, int comp_width);
 void			free_map(t_map	*map);
+void			row_confirmation(t_map	*map);
+void			check_characters(t_map	*map);
 
 #endif 

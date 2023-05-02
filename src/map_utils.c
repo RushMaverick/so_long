@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/28 15:54:18 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/02 12:34:35 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ the map is rectangular or not. Map_placement
 places the correct sprites on the correct characters.*/
 void	map_check(t_map *map, t_vars *vars)
 {
-	int	comp_width;
+	int		comp_width;
+	int		count;
 
 	map->x = 0;
 	map->y = 0;
+	count = 0;
 	comp_width = ft_strlen(map->map[map->y]);
 	while (map->map[map->y] != '\0')
 	{
@@ -65,8 +67,8 @@ void	map_check(t_map *map, t_vars *vars)
 			map->x++;
 		}
 		map->y++;
-	}	
-	// ft_printf("%s\n", map->map[0]);
+	}
+	row_confirmation(map);
 	// ft_printf("%s\n", map->map[map->y - 1]); Loop through comp string or some
 }
 

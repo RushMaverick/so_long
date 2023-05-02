@@ -6,11 +6,34 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:28:36 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/28 11:42:44 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/02 13:40:28 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	row_confirmation(t_map *map)
+{
+	int		i;
+
+	i = 0;
+	while (i < map->x)
+	{
+		if (map->map[map->y - 1][i] != '1' || map->map[0][i] != '1')
+		{
+			invalid_error("Map is not closed off. Check map.");
+			exit(0);
+		}
+		i++;
+	}
+}
+
+void	check_characters(t_map *map)
+{
+	ft_printf("%s\n", map->map[0]);
+	ft_printf("This is where the program detected that you don't have a proper amount of characters for the map to be valid.");
+	ft_printf("Also maybe have the program check if any of those collectibles are closed off from the player.");
+}
 
 /*Check the length of the following grid_line by
 comparing to the comp_width set at the start.*/
