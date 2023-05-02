@@ -6,23 +6,23 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/02 12:34:35 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/02 19:12:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_map(t_map *map)
+void	free_map(t_game *game)
 {
-	while (map->y >= 0)
+	while (game->y >= 0)
 	{
-		free(map->map[map->y]);
-		map->y--;
+		free(game->map[game->y]);
+		game->y--;
 	}
-	free(map->map);
+	free(game->map);
 }
 
-void	map_reader(int fd, t_map *map)
+void	map_reader(int fd, t_game *game)
 {
 	char	*str;
 	char	*map_array;
@@ -41,47 +41,67 @@ void	map_reader(int fd, t_map *map)
 		free(str);
 		count++;
 	}
-	map->map = ft_split(map_array, '\n');
+	game->map = ft_split(map_array, '\n');
 	free(map_array);
 }
 
 /*Checks the validity of the map. Map_rect_check checks if
 the map is rectangular or not. Map_placement
 places the correct sprites on the correct characters.*/
-void	map_check(t_map *map, t_vars *vars)
+void	map_parser(t_game *game)
 {
-	int		comp_width;
-	int		count;
+	int	comp_width;
+	int	count;
 
-	map->x = 0;
-	map->y = 0;
+	game->x = 0;
+	game->y = 0;
+	game->collectible = 0;
+	game->num_player = 0;
+	game->num_exit = 0;
+	comp_width = ft_strlen(game->map[game->y]);
 	count = 0;
-	comp_width = ft_strlen(map->map[map->y]);
-	while (map->map[map->y] != '\0')
+	while (game->map[game->y] != '\0')
 	{
-		map->x = 0;
-		map_rect_check(map->map[map->y], comp_width); //I am not checking for if the top and bottom line are just 1s
-		while (map->map[map->y][map->x] != '\0')
+		game->x = 0;
+		map_rect_check(game->map[game->y], comp_width);
+		while (game->map[game->y][game->x] != '\0')
 		{
-			map_placement(map, map->y, map->x, vars);
-			map->x++;
+			variable_counter(game);
+			map_placement(game, game->y, game->x);
+			game->x++;
 		}
-		map->y++;
+		game->y++;
 	}
-	row_confirmation(map);
-	// ft_printf("%s\n", map->map[map->y - 1]); Loop through comp string or some
+	checking_number(game);
+	row_confirmation(game);
+	flood_check(game);
 }
 
-void	map_checker(char *file_name, t_vars *vars)
+void	variable_counter(t_game *game)
+{
+	if (game->map[game->y][game->x] == 'C')
+		game->collectible++;
+	else if (game->map[game->y][game->x] == 'P')
+		game->num_player++;
+	else if (game->map[game->y][game->x] == 'E')
+		game->num_exit++;
+}
+
+void	checking_number(t_game *game)
+{
+	if (game->collectible <= 0)
+		exit (0);
+	if (game->num_exit != 1 || game->num_player != 1)
+		exit (0);
+}
+
+void	map_checker(char *file_name, t_game *game)
 {
 	int		fd;
-	t_map	*map;
 
-	map = malloc(sizeof(t_map));
-	if (!map)
-		exit (0);
+	if (!game)
+		exit(0);
 	fd = open(file_name, O_RDONLY);
-	map_reader(fd, map);
-	vars->map = map;
-	map_check(map, vars);
+	map_reader(fd, game);
+	map_parser(game);
 }

@@ -6,45 +6,47 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:53:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/04/27 15:03:25 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/02 18:08:25 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	sprite_placement(t_map *map, t_vars *vars, int offsetx, int offsety)
+void	sprite_placement(t_game *game, int offsetx, int offsety)
 {
-	if (map->map[map->y][map->x] == '1')
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, offsetx,
+	if (game->map[game->y][game->x] == '1')
+		mlx_put_image_to_window(game->mlx, game->win, game->wall, offsetx,
 			offsety);
-	if (map->map[map->y][map->x] == '0')
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->empty, offsetx,
+	if (game->map[game->y][game->x] == '0')
+		mlx_put_image_to_window(game->mlx, game->win, game->empty, offsetx,
 			offsety);
-	if (map->map[map->y][map->x] == 'E')
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->exit, offsetx,
+	if (game->map[game->y][game->x] == 'E')
+		mlx_put_image_to_window(game->mlx, game->win, game->exit, offsetx,
 			offsety);
-	if (map->map[map->y][map->x] == 'P')
+	if (game->map[game->y][game->x] == 'P')
 	{
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->empty, offsetx,
+		game->pposx = game->x;
+		game->pposy = game->y;
+		mlx_put_image_to_window(game->mlx, game->win, game->empty, offsetx,
 			offsety);
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->player, offsetx,
+		mlx_put_image_to_window(game->mlx, game->win, game->player, offsetx,
 			offsety);
 	}
-	if (map->map[map->y][map->x] == 'C')
+	if (game->map[game->y][game->x] == 'C')
 	{
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->empty, offsetx,
+		mlx_put_image_to_window(game->mlx, game->win, game->empty, offsetx,
 			offsety);
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->key, offsetx,
+		mlx_put_image_to_window(game->mlx, game->win, game->key, offsetx,
 			offsety);
 	}
 }
 
-void	map_placement(t_map *map, int x, int y, t_vars *vars)
+void	map_placement(t_game *game, int x, int y)
 {
 	int	offsetx;
 	int	offsety;
 
 	offsetx = x * 32;
 	offsety = y * 32;
-	sprite_placement(map, vars, offsety, offsetx);
+	sprite_placement(game, offsety, offsetx);
 }

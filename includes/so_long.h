@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/02 13:38:01 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/02 19:06:38 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,18 @@
 # include "libft.h"
 # include "mlx.h"
 
-// typedef enum e_game_obj
-// {
-// 	EMPTY,
-// 	PLAYER,
-// 	WALL,
-// 	EXIT,
-// 	COLLECTIBLE,
-// }				t_game_obj;
-
-typedef struct s_map
+typedef struct s_game
 {
 	int			x;
 	int			y;
+	int			resx;
+	int			resy;
+	int			pposy;
+	int			pposx;
+	int			collectible;
+	int			num_player;
+	int			num_exit;
 	char		**map;
-}				t_map;
-
-typedef struct s_vars
-{
 	void		*mlx;
 	void		*win;
 	void		*player;
@@ -52,13 +46,6 @@ typedef struct s_vars
 	void		*exit;
 	void		*wall;
 	void		*key;
-	t_map		*map;
-}				t_vars;
-
-typedef struct s_game
-{
-	int			resx;
-	int			resy;
 }				t_game;
 
 typedef enum e_keyevent
@@ -77,16 +64,18 @@ typedef enum e_keyevent
 	ESC = 53
 }				t_keyevent;
 
-int				key_handler(int keycode, t_vars *vars);
-void			init(t_game *game, t_vars *vars);
+int				key_handler(int keycode, t_game *game);
+void			init(t_game *game);
 void			invalid_error(char *err_msg);
-void			map_checker(char *line, t_vars *vars);
-void			map_reader(int fd, t_map *map);
-void			map_check(t_map *map, t_vars *vars);
-void			map_placement(t_map *map, int x, int y, t_vars *vars);
+void			map_checker(char *file_name, t_game *game);
+void			map_reader(int fd, t_game *game);
+void			map_parser(t_game *game);
+void			map_placement(t_game *game, int x, int y);
 void			map_rect_check(const char *grid_line, int comp_width);
-void			free_map(t_map	*map);
-void			row_confirmation(t_map	*map);
-void			check_characters(t_map	*map);
+void			free_map(t_game *game);
+void			row_confirmation(t_game *game);
+void			flood_check(t_game *game);
+void			checking_number(t_game *game);
+void			variable_counter(t_game *game);
 
 #endif 
