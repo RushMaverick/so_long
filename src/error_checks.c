@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:28:36 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/02 18:45:34 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/03 11:29:15 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	map_rect_check(const char *grid_line, int comp_width)
 	{
 		if (grid_line[i] != 'E' && grid_line[i] != '0'
 			&& grid_line[i] != '1' && grid_line[i] != 'C'
-			&& grid_line[i] != 'P')
+			&& grid_line[i] != 'P' && grid_line[i] != 'D')
 			invalid_error("Illegal character found in map. Check map.");
 		i++;
 	}

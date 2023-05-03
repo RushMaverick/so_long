@@ -6,11 +6,21 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/02 17:49:24 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/03 12:16:19 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_map(t_game *game)
+{
+	while (game->y >= 0)
+	{
+		free(game->map[game->y]);
+		game->y--;
+	}
+	free(game->map);
+}
 
 void	init(t_game *game)
 {
@@ -42,19 +52,19 @@ void	init(t_game *game)
 
 int	key_handler(int keycode, t_game *game)
 {
-	if (keycode == KEY_W)
-		ft_printf("MOVE UP\n");
-	if (keycode == KEY_A)
-		ft_printf("MOVE LEFT\n");
-	if (keycode == KEY_S)
-		ft_printf("MOVE DOWN\n");
-	if (keycode == KEY_D)
-		ft_printf("MOVE RIGHT\n");
 	if (keycode == ESC)
 	{
 		free_map(game);
 		exit(0);
 	}
+	if (keycode == KEY_W)
+		up(game);
+	if (keycode == KEY_A)
+		left(game);
+	if (keycode == KEY_S)
+		down(game);
+	if (keycode == KEY_D)
+		right(game);
 	return (0);
 }
 

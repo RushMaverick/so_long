@@ -6,21 +6,11 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/02 19:12:30 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/02 19:33:54 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_map(t_game *game)
-{
-	while (game->y >= 0)
-	{
-		free(game->map[game->y]);
-		game->y--;
-	}
-	free(game->map);
-}
 
 void	map_reader(int fd, t_game *game)
 {
