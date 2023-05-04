@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/04 13:49:04 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/04 16:00:32 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	map_parser(t_game *game)
 
 	game->x = 0;
 	game->y = 0;
-	game->collectible = 0;
 	game->num_player = 0;
 	game->num_exit = 0;
 	comp_width = ft_strlen(game->map[game->y]);
@@ -57,7 +56,7 @@ void	map_parser(t_game *game)
 		while (game->map[game->y][game->x] != '\0')
 		{
 			variable_counter(game);
-			map_placement(game, game->y, game->x);
+			map_placement(game, game->x, game->y);
 			game->x++;
 		}
 		game->y++;

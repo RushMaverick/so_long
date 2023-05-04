@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/04 14:25:58 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/04 16:00:38 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init(t_game *game)
 {
 	game->resx = 32;
 	game->resy = 32;
+	game->collectible = 0;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
