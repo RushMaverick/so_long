@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/03 11:25:09 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/04 14:02:35 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void			map_checker(char *file_name, t_game *game);
 void			map_reader(int fd, t_game *game);
 void			map_parser(t_game *game);
 void			map_placement(t_game *game, int x, int y);
+void			sprite_placement(t_game *game, int x, int y);
+void			empty_placement(t_game *game, int x, int y);
 void			map_rect_check(const char *grid_line, int comp_width);
 void			free_map(t_game *game);
 void			row_confirmation(t_game *game);
