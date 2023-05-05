@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/04 16:00:49 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/05 09:58:26 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ typedef struct s_game
 	char		**map;
 	void		*mlx;
 	void		*win;
-	void		*player;
+	void		*player_front;
+	void		*player_left;
+	void		*player_right;
+	void		*player_back;
 	void		*empty;
 	void		*exit;
 	void		*wall;

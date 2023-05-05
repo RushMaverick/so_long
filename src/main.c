@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/04 16:00:38 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/05 09:59:32 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,15 @@ void	free_map(t_game *game)
 	free(game->map);
 }
 
-void	init(t_game *game)
+void	sprite_init(t_game *game)
 {
-	game->resx = 32;
-	game->resy = 32;
-	game->collectible = 0;
-	game->mlx = mlx_init();
-	if (!game->mlx)
-	{
-		ft_printf("Failed to init, innit?");
-		exit(1);
-	}
-	game->player = mlx_xpm_file_to_image(game->mlx, FRONT, &game->resx,
+	game->player_front = mlx_xpm_file_to_image(game->mlx, FRONT, &game->resx,
+			&game->resy);
+	game->player_back = mlx_xpm_file_to_image(game->mlx, BACK, &game->resx,
+			&game->resy);
+	game->player_left = mlx_xpm_file_to_image(game->mlx, LEFT, &game->resx,
+			&game->resy);
+	game->player_right = mlx_xpm_file_to_image(game->mlx, RIGHT, &game->resx,
 			&game->resy);
 	game->empty = mlx_xpm_file_to_image(game->mlx, EMPTY, &game->resx,
 			&game->resy);
@@ -43,12 +40,20 @@ void	init(t_game *game)
 			&game->resy);
 	game->key = mlx_xpm_file_to_image(game->mlx, KEY, &game->resx,
 			&game->resy);
+}
+
+void	init(t_game *game)
+{
+	game->resx = 32;
+	game->resy = 32;
+	game->collectible = 0;
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		invalid_error("Failed to initialize mlx.");
+	sprite_init(game);
 	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "VIdy a geim");
 	if (!game->win)
-	{
-		ft_printf("Window did not open, therefore you suck.");
-		exit(1);
-	}
+		invalid_error("Window failed to open.");
 }
 
 int	key_handler(int keycode, t_game *game)
