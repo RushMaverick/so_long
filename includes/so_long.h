@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/05 09:58:26 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/05 16:16:42 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ typedef struct s_game
 	int			pposy;
 	int			pposx;
 	int			collectible;
+	int			collectible_check;
 	int			num_player;
 	int			num_exit;
+	int			map_validity;
+	int			exit_reach;
 	char		**map;
+	char		**temp_map;
 	void		*mlx;
 	void		*win;
 	void		*player_front;
@@ -79,7 +83,8 @@ void			empty_placement(t_game *game, int x, int y);
 void			map_rect_check(const char *grid_line, int comp_width);
 void			free_map(t_game *game);
 void			row_confirmation(t_game *game);
-void			flood_check(t_game *game);
+void			flood_check(t_game *game, int x, int y);
+void			game_window(t_game *game, int x, int y);
 void			checking_number(t_game *game);
 void			variable_counter(t_game *game);
 void			up(t_game *game);

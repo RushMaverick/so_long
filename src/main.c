@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/05 09:59:32 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/05 16:17:06 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void	sprite_init(t_game *game)
 			&game->resy);
 	game->exit = mlx_xpm_file_to_image(game->mlx, EXIT, &game->resx,
 			&game->resy);
-	game->key = mlx_xpm_file_to_image(game->mlx, KEY, &game->resx,
-			&game->resy);
+	game->key = mlx_xpm_file_to_image(game->mlx, KEY, &game->resx, &game->resy);
 }
 
 void	init(t_game *game)
@@ -47,11 +46,13 @@ void	init(t_game *game)
 	game->resx = 32;
 	game->resy = 32;
 	game->collectible = 0;
+	game->collectible_check = 0;
+	game->exit_reach = 0;
+	game->map_validity = 0;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		invalid_error("Failed to initialize mlx.");
 	sprite_init(game);
-	game->win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "VIdy a geim");
 	if (!game->win)
 		invalid_error("Window failed to open.");
 }

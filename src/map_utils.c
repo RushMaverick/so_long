@@ -6,11 +6,17 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/04 16:00:32 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/05 16:17:53 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+// void	game_window(t_game *game, int x, int y)
+// {
+// 	game->win = mlx_new_window(game->mlx, x * 32, y * 32,
+// 			"VIdy a geim");
+// }
 
 void	map_reader(int fd, t_game *game)
 {
@@ -32,6 +38,7 @@ void	map_reader(int fd, t_game *game)
 		count++;
 	}
 	game->map = ft_split(map_array, '\n');
+	game->temp_map = ft_split(map_array, '\n');
 	free(map_array);
 }
 
@@ -42,13 +49,22 @@ void	map_parser(t_game *game)
 {
 	int	comp_width;
 	int	count;
+	int	y;
+	int	x;
 
 	game->x = 0;
 	game->y = 0;
-	game->num_player = 0;
-	game->num_exit = 0;
+	x = 0;
+	y = 0;
 	comp_width = ft_strlen(game->map[game->y]);
 	count = 0;
+	// while (game->map[y] != '\0')
+	// {
+	// 	y++;
+	// 	while (game->map[y][x] != '\0')
+	// 		x++;
+	// }
+	// game_window(game, x, y);
 	while (game->map[game->y] != '\0')
 	{
 		game->x = 0;
@@ -63,7 +79,7 @@ void	map_parser(t_game *game)
 	}
 	checking_number(game);
 	row_confirmation(game);
-	flood_check(game);
+	flood_check(game, game->pposx, game->pposy);
 }
 
 void	variable_counter(t_game *game)
@@ -93,4 +109,6 @@ void	map_checker(char *file_name, t_game *game)
 	fd = open(file_name, O_RDONLY);
 	map_reader(fd, game);
 	map_parser(game);
+	if (game->map_validity != 1)
+		invalid_error("Collectibles or exit is unreachable.");
 }
