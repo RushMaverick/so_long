@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:28:36 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 11:20:38 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 11:28:41 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ void	flood_check(t_game *game, int x, int y)
 		|| game->temp_map[y][x] == 'P' || game->temp_map[y][x] == 'E')
 	{
 		if (game->temp_map[y][x] == 'C')
-		{
 			game->collectible_check += 1;
-		}
 		game->temp_map[y][x] = 'X';
 		if (x < game->x - 1)
 			flood_check(game, x + 1, y);

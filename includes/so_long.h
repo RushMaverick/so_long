@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 11:13:45 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 16:30:58 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_game
 	int			y;
 	int			resx;
 	int			resy;
+	int			steps;
 	int			pposy;
 	int			pposx;
 	int			collectible;
@@ -83,8 +84,7 @@ void			free_map(t_game *game);
 void			row_confirmation(t_game *game);
 void			flood_check(t_game *game, int x, int y);
 void			game_window(t_game *game);
-void			checking_number(t_game *game);
-void			variable_counter(t_game *game);
+void			finish_game(t_game *game);
 void			up(t_game *game);
 void			down(t_game *game);
 void			left(t_game *game);

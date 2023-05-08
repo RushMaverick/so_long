@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 11:14:00 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 16:24:20 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	init(t_game *game)
 	game->num_player = 0;
 	game->exit_reach = 0;
 	game->map_validity = 0;
+	game->steps = 0;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		invalid_error("Failed to initialize mlx.");
@@ -77,9 +78,7 @@ void	game_window(t_game *game)
 	while (game->map[y] != '\0')
 	{
 		while (game->map[y][x] != '\0')
-		{
 			x++;
-		}
 		y++;
 	}
 	game->win = mlx_new_window(game->mlx, x * 32, y * 32,
