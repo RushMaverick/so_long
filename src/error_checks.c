@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:28:36 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 11:28:41 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 17:59:53 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	row_confirmation(t_game *game)
 		i++;
 	}
 	if (game->collectible <= 0)
-		exit (0);
+		invalid_error("No collectibles in the map.");
 	if (game->num_exit != 1 || game->num_player != 1)
-		exit (0);
+		invalid_error("No exit or no player, check again.");
 }
 
 /*Check the length of the following grid_line by

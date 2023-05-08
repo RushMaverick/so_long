@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 16:30:58 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 18:27:31 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef enum e_keyevent
 	ESC = 53
 }				t_keyevent;
 
+void			sprite_init(t_game *game);
+void			init(t_game *game);
 void			invalid_error(char *err_msg);
 void			map_checker(char *file_name, t_game *game);
 void			map_reader(int fd, t_game *game);

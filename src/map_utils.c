@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 11:18:43 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 17:58:12 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	map_parser(t_game *game)
 	row_confirmation(game);
 	flood_check(game, game->pposx, game->pposy);
 }
-
 
 void	map_checker(char *file_name, t_game *game)
 {
