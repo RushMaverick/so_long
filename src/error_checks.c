@@ -6,11 +6,21 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:28:36 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/05 15:55:37 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 11:20:38 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_map(t_game *game)
+{
+	while (game->y >= 0)
+	{
+		free(game->map[game->y]);
+		game->y--;
+	}
+	free(game->map);
+}
 
 void	flood_check(t_game *game, int x, int y)
 {
@@ -24,7 +34,6 @@ void	flood_check(t_game *game, int x, int y)
 		if (game->temp_map[y][x] == 'C')
 		{
 			game->collectible_check += 1;
-			ft_printf("%d\n", game->collectible_check);
 		}
 		game->temp_map[y][x] = 'X';
 		if (x < game->x - 1)
@@ -54,6 +63,10 @@ void	row_confirmation(t_game *game)
 		}
 		i++;
 	}
+	if (game->collectible <= 0)
+		exit (0);
+	if (game->num_exit != 1 || game->num_player != 1)
+		exit (0);
 }
 
 /*Check the length of the following grid_line by

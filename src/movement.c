@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:24:33 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/05 10:01:49 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 10:30:05 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	up(t_game *game)
 			* 32, game->pposy * 32);
 		game->map[game->pposy][game->pposx] = '0';
 		game->pposy -= 1;
-		mlx_put_image_to_window(game->mlx, game->win, game->player_back, game->pposx
-			* 32, game->pposy * 32);
+		mlx_put_image_to_window(game->mlx, game->win, game->player_back,
+			game->pposx * 32, game->pposy * 32);
 	}
 	if (game->map[game->pposy - 1][game->pposx] == 'C')
 	{
@@ -32,14 +32,13 @@ void	up(t_game *game)
 		game->collectible--;
 		game->map[game->pposy][game->pposx] = '0';
 		game->pposy -= 1;
-		mlx_put_image_to_window(game->mlx, game->win, game->player_back, game->pposx
-			* 32, game->pposy * 32);
+		mlx_put_image_to_window(game->mlx, game->win, game->player_back,
+			game->pposx * 32, game->pposy * 32);
 	}
 }
 
 void	left(t_game *game)
 {
-	ft_printf("Collect Counter: %d\n", game->collectible);
 	if (game->map[game->pposy][game->pposx - 1] == '0')
 	{
 		game->map[game->pposy][game->pposx - 1] = 'P';
@@ -47,8 +46,8 @@ void	left(t_game *game)
 			* 32, game->pposy * 32);
 		game->map[game->pposy][game->pposx] = '0';
 		game->pposx -= 1;
-		mlx_put_image_to_window(game->mlx, game->win, game->player_left, game->pposx
-			* 32, game->pposy * 32);
+		mlx_put_image_to_window(game->mlx, game->win, game->player_left,
+			game->pposx * 32, game->pposy * 32);
 	}
 	if (game->map[game->pposy][game->pposx - 1] == 'C')
 	{
@@ -58,10 +57,9 @@ void	left(t_game *game)
 		game->collectible--;
 		game->map[game->pposy][game->pposx] = '0';
 		game->pposx -= 1;
-		mlx_put_image_to_window(game->mlx, game->win, game->player_left, game->pposx
-			* 32, game->pposy * 32);
+		mlx_put_image_to_window(game->mlx, game->win, game->player_left,
+			game->pposx * 32, game->pposy * 32);
 	}
-	ft_printf("Collect Counter: %d\n", game->collectible);
 }
 
 void	right(t_game *game)
@@ -73,8 +71,8 @@ void	right(t_game *game)
 			* 32, game->pposy * 32);
 		game->map[game->pposy][game->pposx] = '0';
 		game->pposx += 1;
-		mlx_put_image_to_window(game->mlx, game->win, game->player_right, game->pposx
-			* 32, game->pposy * 32);
+		mlx_put_image_to_window(game->mlx, game->win, game->player_right,
+			game->pposx * 32, game->pposy * 32);
 	}
 	if (game->map[game->pposy][game->pposx + 1] == 'C')
 	{
@@ -84,8 +82,8 @@ void	right(t_game *game)
 		game->collectible--;
 		game->map[game->pposy][game->pposx] = '0';
 		game->pposx += 1;
-		mlx_put_image_to_window(game->mlx, game->win, game->player_right, game->pposx
-			* 32, game->pposy * 32);
+		mlx_put_image_to_window(game->mlx, game->win, game->player_right,
+			game->pposx * 32, game->pposy * 32);
 	}
 }
 
@@ -98,8 +96,8 @@ void	down(t_game *game)
 			* 32, game->pposy * 32);
 		game->map[game->pposy][game->pposx] = '0';
 		game->pposy += 1;
-		mlx_put_image_to_window(game->mlx, game->win, game->player_front, game->pposx
-			* 32, game->pposy * 32);
+		mlx_put_image_to_window(game->mlx, game->win, game->player_front,
+			game->pposx * 32, game->pposy * 32);
 	}
 	if (game->map[game->pposy + 1][game->pposx] == 'C')
 	{
@@ -109,7 +107,7 @@ void	down(t_game *game)
 		game->collectible--;
 		game->map[game->pposy][game->pposx] = '0';
 		game->pposy += 1;
-		mlx_put_image_to_window(game->mlx, game->win, game->player_front, game->pposx
-			* 32, game->pposy * 32);
+		mlx_put_image_to_window(game->mlx, game->win, game->player_front,
+			game->pposx * 32, game->pposy * 32);
 	}
 }

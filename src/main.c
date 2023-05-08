@@ -6,21 +6,11 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/05 16:17:06 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 11:14:00 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_map(t_game *game)
-{
-	while (game->y >= 0)
-	{
-		free(game->map[game->y]);
-		game->y--;
-	}
-	free(game->map);
-}
 
 void	sprite_init(t_game *game)
 {
@@ -41,12 +31,14 @@ void	sprite_init(t_game *game)
 	game->key = mlx_xpm_file_to_image(game->mlx, KEY, &game->resx, &game->resy);
 }
 
-void	init(t_game *game)
+static void	init(t_game *game)
 {
 	game->resx = 32;
 	game->resy = 32;
 	game->collectible = 0;
 	game->collectible_check = 0;
+	game->num_exit = 0;
+	game->num_player = 0;
 	game->exit_reach = 0;
 	game->map_validity = 0;
 	game->mlx = mlx_init();
@@ -57,7 +49,7 @@ void	init(t_game *game)
 		invalid_error("Window failed to open.");
 }
 
-int	key_handler(int keycode, t_game *game)
+static int	key_handler(int keycode, t_game *game)
 {
 	if (keycode == ESC)
 	{
@@ -73,6 +65,25 @@ int	key_handler(int keycode, t_game *game)
 	if (keycode == KEY_D)
 		right(game);
 	return (0);
+}
+
+void	game_window(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (game->map[y] != '\0')
+	{
+		while (game->map[y][x] != '\0')
+		{
+			x++;
+		}
+		y++;
+	}
+	game->win = mlx_new_window(game->mlx, x * 32, y * 32,
+			"VIdy a geim");
 }
 
 int	main(int argc, char **argv)

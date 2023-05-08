@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:53:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/05 16:13:00 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/08 11:18:34 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,22 @@ void	sprite_placement(t_game *game, int x, int y)
 		mlx_put_image_to_window(game->mlx, game->win, game->wall, x * 32, y
 			* 32);
 	if (game->map[game->y][game->x] == 'E')
+	{
 		mlx_put_image_to_window(game->mlx, game->win, game->exit, x * 32, y
 			* 32);
+		game->num_exit++;
+	}
 	if (game->map[game->y][game->x] == 'P')
 	{
 		game->pposx = game->x;
 		game->pposy = game->y;
+		game->num_player++;
 		mlx_put_image_to_window(game->mlx, game->win, game->player_front,
 			x * 32, y * 32);
 	}
 	if (game->map[game->y][game->x] == 'C')
 	{
+		game->collectible++;
 		mlx_put_image_to_window(game->mlx, game->win, game->key, x * 32, y
 			* 32);
 	}
