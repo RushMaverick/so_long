@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/09 09:10:30 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/09 14:38:01 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	main(int argc, char **argv)
 		ft_printf("Nice try bucko, try again.\n");
 		exit(1);
 	}
+	argchecker(argv[1]);
 	init(&game);
 	map_checker(argv[1], &game);
 	mlx_hook(game.win, 17, 1L << 5, &close_window, &game);

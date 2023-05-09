@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:28:36 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/09 09:22:25 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/09 16:23:16 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,20 @@ void	free_map(t_game *game)
 	free(game->temp_map);
 }
 
-void	flood_check(t_game *game, int x, int y)
+int	argchecker(char *arg)
 {
-	if (game->exit_reach == 1 && game->collectible == game->collectible_check)
-		game->map_validity = 1;
-	if (game->temp_map[y][x] == 'E')
-		game->exit_reach = 1;
-	if (game->temp_map[y][x] == '0' || game->temp_map[y][x] == 'C'
-		|| game->temp_map[y][x] == 'P' || game->temp_map[y][x] == 'E')
-	{
-		if (game->temp_map[y][x] == 'C')
-			game->collectible_check += 1;
-		game->temp_map[y][x] = 'X';
-		if (x < game->x - 1)
-			flood_check(game, x + 1, y);
-		if (y < game->y - 1)
-			flood_check(game, x, y + 1);
-		if (x > 0)
-			flood_check(game, x - 1, y);
-		if (y > 0)
-			flood_check(game, x, y - 1);
-	}
+	char	*ber;
+	char	*check;
+	int		len;
+
+	len = ft_strlen(arg);
+	ber = ".ber";
+	check = ft_strnstr(arg, ber, len);
+	if (!check)
+		invalid_error("Map is not .ber format. Check again");
+	return (0);
 }
 
-/*Checks that the first and the last rows are 1s,
-essentially telling us they are walls.*/
 void	row_confirmation(t_game *game)
 {
 	int	i;
@@ -57,10 +46,7 @@ void	row_confirmation(t_game *game)
 	while (i < game->x)
 	{
 		if (game->map[game->y - 1][i] != '1' || game->map[0][i] != '1')
-		{
 			invalid_error("Map is not closed off. Check map.");
-			exit(0);
-		}
 		i++;
 	}
 	if (game->collectible <= 0)
@@ -69,8 +55,6 @@ void	row_confirmation(t_game *game)
 		invalid_error("No exit or no player, check again.");
 }
 
-/*Check the length of the following grid_line by
-comparing to the comp_width set at the start.*/
 void	map_rect_check(const char *grid_line, int comp_width)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 17:58:12 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/09 12:55:37 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ void	map_reader(int fd, t_game *game)
 	while (1)
 	{
 		str = get_next_line(fd);
+		if (count == 0 && str == NULL)
+			invalid_error("Map seems to be invalid or empty, check again.");
 		if (str == NULL)
 			break ;
+		if (ft_strncmp(str, "\n", ft_strlen(str)) == 0)
+			invalid_error("Empty lines found. Check map again.");
 		map_array = ft_strjoinfree(map_array, str);
 		free(str);
 		count++;
