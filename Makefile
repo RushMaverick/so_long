@@ -2,13 +2,13 @@ NAME = so_long
 
 LIB_DIR = libft
 SRC_DIR = src
-VPATH = src:libft:includes
+VPATH = src:libft:includes:map
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 OBJ_DIR = obj
 
 INCLUDES = -Ilibft/includes -Iincludes
-CFLAGS = -Wall -Wextra -Werror -MMD -g
+CFLAGS = -Wall -Wextra -Werror -MMD
 MLXFLAGS = -framework OpenGL -framework AppKit
 # Sources
 

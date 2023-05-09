@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:28:36 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 17:59:53 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/09 09:22:25 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 void	free_map(t_game *game)
 {
 	while (game->y >= 0)
-	{
+	{	
+		free(game->temp_map[game->y]);
 		free(game->map[game->y]);
 		game->y--;
 	}
 	free(game->map);
+	free(game->temp_map);
 }
 
 void	flood_check(t_game *game, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:40:06 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 18:27:34 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/09 09:10:30 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static	int	close_window(t_game *game)
 {
+	free_map(game);
 	mlx_destroy_window(game->mlx, game->win);
 	exit(0);
 	return (0);

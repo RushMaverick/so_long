@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 17:31:35 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 18:27:31 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/09 09:14:01 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define EMPTY "src/sprites/empty.xpm"
 # define KEY "src/sprites/key.xpm"
 # include "libft.h"
-# include "mlx.h"
+# include <mlx.h>
 
 typedef struct s_game
 {
