@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:24:33 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 19:02:50 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/09 19:19:45 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	right(t_game *game)
 			game->steps++;
 			ft_printf("%d steps taken. Thread carefully.\n", game->steps);
 		}
-		game->map[game->pposy][game->pposx + 1] = game->pposx;
+		game->map[game->pposy][game->pposx + 1] = 'P';
 		mlx_put_image_to_window(game->mlx, game->win, game->empty, game->pposx
 			* 32, game->pposy * 32);
 		game->map[game->pposy][game->pposx] = '0';

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:53:14 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/08 11:18:34 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/09 18:48:29 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void	empty_placement(t_game *game, int x, int y)
 {
 	if (game->map[game->y][game->x])
 	{
+		if (game->map[game->y][game->x] == 'E')
+		{
+			mlx_put_image_to_window(game->mlx, game->win, game->exit, x * 32, y
+				* 32);
+		}
 		mlx_put_image_to_window(game->mlx, game->win, game->empty, x * 32, y
 			* 32);
 	}

@@ -6,7 +6,7 @@
 /*   By: rrask <rrask@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:50:28 by rrask             #+#    #+#             */
-/*   Updated: 2023/05/09 12:55:37 by rrask            ###   ########.fr       */
+/*   Updated: 2023/05/09 19:11:15 by rrask            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ void	map_reader(int fd, t_game *game)
 	free(map_array);
 }
 
-/*Checks the validity of the map. Map_rect_check checks if
-the map is rectangular or not. Map_placement
-places the correct sprites on the correct characters.*/
 void	map_parser(t_game *game)
 {
 	int	comp_width;
